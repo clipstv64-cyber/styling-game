@@ -1,6 +1,21 @@
-# Funktionsprüfung der Atelier Edition V5
+# Funktionsprüfung der Atelier Edition V6
 
-## Neu für V5: Kleidung
+## Neu für V6: Hals und Körper
+
+Im Chromium-Browser geprüft:
+
+- Die geprüften Innenbereiche an Hals, beiden Handgelenken und beiden Knöcheln sind ohne transparente Lücken verbunden.
+- Alle sieben Hautfarben färben Hals, Arme, Hände, Beine und Füße. Gerenderte Farbpixel und Transparenz wurden kontrolliert.
+- Bei elf geschlossenen Schuhmodellen ragen im geprüften Bereich keine Fußpixel seitlich aus der Schuhform. Offene Schuhe und Barfußdarstellung behalten die Zehen.
+- Die langen Ärmel von zehn Modellen bedecken weiterhin alle 13.720 geprüften Punkte der Armkontur.
+- Alle 125 Auswahlstücke lassen sich weiterhin anziehen; alle 586 Farbvarianten liefern gültige SVG-Grafiken. Vorschaubilder und alle zehn Farbpaletten funktionieren.
+- Jacken-, Halsketten- und Schuhüberlagerungen funktionieren weiterhin; der Kundenablauf einschließlich Wunschbild und Bewertung wurde erneut geprüft.
+- Ansicht bei 320 × 568, 430 × 932 und 1440 × 1000 Pixeln geprüft.
+- Keine JavaScript-Fehler oder fehlenden lokalen Ressourcen in diesen Prüfungen.
+
+Die neuen Ansichten sind unter [Körper V6](https://github.com/clipstv64-cyber/styling-game/blob/grafik-atelier/previews/koerper-v6.md) zu sehen.
+
+## Bereits für V5 geprüft: Kleidung
 
 Im Chromium-Browser geprüft:
 

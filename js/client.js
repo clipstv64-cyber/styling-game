@@ -88,7 +88,7 @@
   }
   const art = e => { if (!e) return { body: '', sleeves: '' }; const i = byId(e.id); if (!i) return { body: '', sleeves: '' }; const r = i.art(e.color || i.colors[0]); return { body: r.body || '', sleeves: r.sleeves || '' }; };
   function charSVG(L, W, vb, cls = '') {
-    const o = L.outfit, b = ART.body(L.skin), dress = art(o.dress), top = o.dress ? art(null) : art(o.top), bottom = o.dress ? art(null) : art(o.bottom), outer = art(o.outer);
+    const o = L.outfit, b = ART.body(L.skin, o), dress = art(o.dress), top = o.dress ? art(null) : art(o.top), bottom = o.dress ? art(null) : art(o.bottom), outer = art(o.outer);
     const mk = (W && W.mk) || {}, hair = W ? W.hair : { color: L.hairColor, len: 'long', curly: false };
     const mir = ART.mirror;
     let under = '';

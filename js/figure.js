@@ -44,14 +44,6 @@
       +`<g id="eyes">${A.mirror(`<g transform="${A.EYE_TF}">${A.eye({},L.skin,L.eye)}</g>`)}</g>`
       +`<g id="eyes-shut" style="display:none">${A.mirror(`<g transform="${A.EYE_TF}">${A.eyeShut(L.skin)}</g>`)}</g>`+A.mouth(L);
   };
-  const oldBody=A.body;
-  A.body=skin=>{
-    const b=oldBody(skin);
-    const neck='M181,309 L219,309 L220,355 Q200,371 180,355 Z';
-    const torso='M184,354 L216,354 C230,361 248,365 256,378 C262,392 252,420 246,450 C240,480 234,500 234,522 C240,545 252,570 252,598 L148,598 C148,570 160,545 166,522 C166,500 160,480 154,450 C148,420 138,392 144,378 C152,365 170,361 184,354 Z';
-    b.torso=`<path d="${neck}" fill="${skin}"/><path d="${neck}" fill="url(#atArm)"/><path d="${torso}" fill="${skin}"/><path d="${torso}" fill="url(#atArm)"/><ellipse cx="200" cy="322" rx="17" ry="10" fill="${sh(skin,-28)}" opacity=".25"/>`;
-    return b;
-  };
   // Give the doll natural shoulder width, applying the same transform to all clothes.
   for(const g of document.querySelectorAll('#char-anim > g')) if(g.id!=='L-head')
     g.setAttribute('transform',A.BODY_TF);

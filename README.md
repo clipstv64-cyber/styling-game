@@ -1,12 +1,22 @@
-# Style Studio — Atelier Edition V5
+# Style Studio — Atelier Edition V6
 
-Styling-Spiel mit überarbeiteter Figur, geschlossenen Haaransätzen und neu gestalteter Kleidung.
+Styling-Spiel mit plastisch modelliertem Körper, überarbeitetem Gesicht, geschlossenen Haaransätzen und neu gestalteter Kleidung.
 
 ## Herunterladen
 
 [**Komplettes Repository als ZIP**](https://github.com/clipstv64-cyber/styling-game/archive/refs/heads/grafik-atelier.zip)
 
-[**Kompakte Spielversion V5 als ZIP**](https://github.com/clipstv64-cyber/styling-game/raw/refs/heads/grafik-atelier/downloads/Style-Studio-Atelier-v5-kompakt.zip)
+[**Kompakte Spielversion V6 als ZIP**](https://github.com/clipstv64-cyber/styling-game/raw/refs/heads/grafik-atelier/downloads/Style-Studio-Atelier-v6-kompakt.zip)
+
+## Neu modellierter Körper
+
+- Durchgehender Übergang von Hals zu Schultern, mit Schlüsselbeinen und weichem Schatten unter dem Kinn.
+- Mit ImageGen modellierte Oberflächen für Oberkörper, Arme und Beine, einschließlich Ellenbogen und Knien.
+- Neue Hände mit einzelnen Fingern, Nägeln und weich verbundenen Handgelenken.
+- Geformte Füße mit Zehen und abgestimmten Übergängen zu den Knöcheln; passende Fußdarstellung für offene und geschlossene Schuhe.
+- Alle sieben Hautfarben und die angepasste Kleidung bleiben erhalten. Spielfigur und Kunden-Wunschbilder verwenden dieselbe Modellierung.
+
+[**Neue Figur ansehen**](https://github.com/clipstv64-cyber/styling-game/blob/grafik-atelier/previews/koerper-v6.md)
 
 ## Neue Kleidung
 

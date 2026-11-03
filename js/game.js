@@ -93,7 +93,7 @@
   function renderHead() { L('head', ART.headBase(look)); L('feat', ART.headFeat(look)); }
   function renderChar() {
     updateGradients();
-    const b = ART.body(look.skin);
+    const b = ART.body(look.skin, look.outfit);
     L('legs', b.legs); L('torso', b.torso); L('arms', b.arms); L('hands', b.hands);
     const o = look.outfit, empty = { body: '', sleeves: '' };
     const dress = itemArt(o.dress), top = o.dress ? empty : itemArt(o.top), bottom = o.dress ? empty : itemArt(o.bottom), outer = itemArt(o.outer);
