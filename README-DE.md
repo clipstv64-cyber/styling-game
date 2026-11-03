@@ -1,4 +1,4 @@
-# Style Studio — Atelier Edition V4
+# Style Studio — Atelier Edition V5
 
 Komplettes Browser-Spiel mit neu gestalteten Räumen, Werkzeugen und Figurenmaterialien.
 
@@ -20,6 +20,15 @@ Anschließend die lokale Seite auf Port 8000 im Browser öffnen. Es sind keine n
 - Kleidung und Accessoires über Kategorien auswählen, mit den Farbpunkten umfärben; die Ablagen lassen sich seitlich verschieben.
 - Haus, Zurücksetzen und Ton-Schalter stehen oben zur Verfügung.
 
+## Neue Kleidung in V5
+
+- Passende Schulter- und Ärmelanschlüsse, schmalere Unterarm-Schnitte und Bündchen bis zum Handgelenk bei langen Ärmeln.
+- Neue Schnitte für Ringelshirt, T-Shirt, Tanktop, Hoodie und Abendkleid.
+- Unterschiedliche ImageGen-Stoffoberflächen für Baumwolle, Satin, Strick, Denim, Leder und Spitze.
+- Materialeffekte auf allen 88 Kleidungs-, Schuh- und Taschenmodellen; individuelle Muster und Verzierungen bleiben erhalten.
+- Vorschaubilder verwenden dieselben Körperproportionen wie Spielfigur und Kunden-Wunschbild.
+- Alle 125 Auswahlstücke und 586 Farbvarianten bleiben verfügbar.
+
 ## Grafische Überarbeitung
 
 - Drei mit ImageGen gestaltete Räume: Friseursalon, Make-up-Atelier und Ankleideboutique.
@@ -37,6 +46,6 @@ Die Figuren bleiben dynamisch: Haare werden weiterhin simuliert, Make-up frei ge
 
 ## Für weitere Bearbeitung mit Claude
 
-`index.html` lädt die vorhandenen Spielmodule. `js/figure.js` baut das neue Gesicht aus separaten Bildteilen auf. `js/atelier.js` enthält die neue Grafik-Einbindung und legt die Bildausschnitte aus den Atlanten fest. `css/boutique.css` enthält die neue Oberfläche. `js/hair.js` zeichnet die weiterhin editierbaren Haare. Die Regeln und Kundenbewertung liegen in `js/game.js` und `js/client.js`.
+`index.html` lädt die vorhandenen Spielmodule. `js/wardrobe.js` enthält die neuen Schnitte und Materialeffekte und berechnet passende Vorschaubilder. `js/clothes.js` stellt die gemeinsam verwendete Schnitt- und Ärmelgeometrie bereit. `js/figure.js` baut das neue Gesicht aus separaten Bildteilen auf. `js/atelier.js` enthält die neue Grafik-Einbindung und legt die Bildausschnitte aus den Atlanten fest. `css/boutique.css` enthält die neue Oberfläche. `js/hair.js` zeichnet die weiterhin editierbaren Haare. Die Regeln und Kundenbewertung liegen in `js/game.js` und `js/client.js`.
 
 Bildatlanten nicht beliebig zuschneiden: Die SVG-Ausschnitte und Materialkoordinaten beziehen sich auf die vollständigen Dateien.

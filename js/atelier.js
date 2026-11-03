@@ -46,16 +46,6 @@
   const room = n => `<svg class="atelier-room" viewBox="${n*512} 0 512 1024" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"><image href="img/atelier-rooms.webp" width="1536" height="1024"/></svg>`;
   A.BG.salon = () => room(0); A.BG.makeup = () => room(1); A.BG.dress = () => room(2);
 
-  // Add generated satin grain to existing vector garments, retaining every cut and colour.
-  for (const item of DATA.ITEMS) {
-    if (!['dress','top','bottom','outer'].includes(item.slot)) continue;
-    const original = item.art;
-    item.art = function(color) {
-      const r = original.call(this,color), wrap = s => s ? `<g filter="url(#atTextile)">${s}</g>` : '';
-      return {...r, body:wrap(r.body), sleeves:wrap(r.sleeves)};
-    };
-  }
-
   // Reusable generated hair material; the live strand renderer clips it to each lock.
   const hair = new Image();
   hair.onload = () => { A.atelierHairMaterial = hair; if (window.GAME) GAME.redraw(); };

@@ -397,7 +397,7 @@
     return { entry: e, item: D.ITEM_BY_ID[e.id] };
   }
   const isWorn = it => { const e = look.outfit[it.slot]; if (!e || e.id !== it.id) return false; return !((it.slot === 'top' || it.slot === 'bottom') && look.outfit.dress); };
-  const itemThumb = (it, color) => { const r = it.art(color || it.colors[0]); return `<svg viewBox="${it.box}" preserveAspectRatio="xMidYMid meet">${r.sleeves || ''}${r.body || ''}</svg>`; };
+  const itemThumb = (it, color) => { const r = it.art(color || it.colors[0]); return `<svg viewBox="${it.box}" preserveAspectRatio="xMidYMid meet"><g transform="${it.thumbTransform || ''}">${r.sleeves || ''}${r.body || ''}</g></svg>`; };
   function renderWardrobe() {
     const cat = G.cat, sel = equippedIn(cat), m = META.dress;
     const g = table.querySelector('.grid'), gl = g ? g.scrollLeft : 0, c = table.querySelector('.cats'), cl = c ? c.scrollLeft : 0;

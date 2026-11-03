@@ -114,13 +114,13 @@ const CK = (() => {
     return (o.drop ? `<path d="${d}" transform="translate(${o.dx || 0} ${o.drop})" fill="#3a1424" opacity="${(o.dropOp || .16) * .5}"/><path d="${d}" transform="translate(${o.dx || 0} ${o.drop * .5})" fill="#3a1424" opacity="${(o.dropOp || .16) * .5}"/>` : '')
       + `<path d="${d}" fill="${c}"${o.op ? ` opacity="${o.op}"` : ''}/>`
       + pats.map((p, i) => `<path d="${d}" fill="${p}" opacity="${(Array.isArray(o.patOp) ? o.patOp[i] : o.patOp) ?? 1}"/>`).join('')
-      + (o.shade === false ? '' : `<path d="${d}" fill="${o.shadeUrl || 'url(#fabShade)'}"/>`)
+      + (o.shade === false ? '' : `<path d="${d}" fill="${o.shadeUrl || 'url(#cwClothVolume)'}"/>`)
       + (o.sheen ? `<path d="${d}" fill="${o.sheen === 'leather' ? 'url(#gkLeather)' : 'url(#gkSatin)'}"/>` : '')
       + (o.vert === false ? '' : `<path d="${d}" fill="url(#gkVert)"/>`)
       + (o.edge === false ? '' : `<path d="${d}" fill="none" stroke="${o.edgeC || sh(c, -42)}" stroke-width="${o.ew || 1.3}" stroke-linejoin="round" opacity="${o.edgeOp || .55}"/>`);
   };
   const st = (d, c, op = .8, w = 1.1, dash = '2.8 2.2') => `<path d="${d}" fill="none" stroke="${c}" stroke-width="${w}" stroke-dasharray="${dash}" stroke-linecap="round" opacity="${op}"/>`;
-  const fold = (d, c, w = 3, op = .32) => `<path d="${d}" fill="none" stroke="${sh(c, -45)}" stroke-width="${w * 1.5}" stroke-linecap="round" opacity="${op * .35}"/><path d="${d}" fill="none" stroke="${sh(c, -45)}" stroke-width="${w * .8}" stroke-linecap="round" opacity="${op * .55}"/><path d="${d}" fill="none" stroke="${sh(c, -30)}" stroke-width="${w * .3}" stroke-linecap="round" opacity="${op}"/>`;
+  const fold = (d, c, w = 3, op = .32) => `<path d="${d}" fill="none" stroke="${sh(c, -34)}" stroke-width="${w * 1.5}" stroke-linecap="round" opacity="${op * .35}"/><path d="${d}" fill="none" stroke="${sh(c, -34)}" stroke-width="${w * .8}" stroke-linecap="round" opacity="${op * .55}"/><path d="${d}" fill="none" stroke="${sh(c, -24)}" stroke-width="${w * .3}" stroke-linecap="round" opacity="${op}"/>`;
   const shine = (d, w = 4, op = .3) => `<path d="${d}" fill="none" stroke="#fff" stroke-width="${w * 1.5}" stroke-linecap="round" opacity="${op * .35}"/><path d="${d}" fill="none" stroke="#fff" stroke-width="${w * .7}" stroke-linecap="round" opacity="${op * .6}"/>`;
   const line = (d, c, w = 1.4, op = 1) => ART.ln(d, c, w, op);
   const button = (x, y, r, c, holes = 4) => { const d = sh(c, -38);
@@ -175,7 +175,7 @@ const CK = (() => {
       + (o.flap ? cloth(`M${x - 1.5},${y - 2} L${x + w + 1.5},${y - 2} L${x + w + 1.5},${y + 9} L${x + w / 2},${y + 13} L${x - 1.5},${y + 9} Z`, sh(c, -6), { edgeOp: .55, ew: 1, vert: false }) + st(`M${x + 1},${y + 7} L${x + w / 2},${y + 10.5} L${x + w - 1},${y + 7}`, o.thread || sh(c, -35), .7, .9) + (o.btn ? button(x + w / 2, y + 9, 2.4, o.btn, 2) : '') : ''); };
 
   /* ---------- arm / sleeve geometry (left arm; mirror for right) ---------- */
-  const SEG = [[[150, 386], [132, 430], [130, 480]], [[130, 480], [128, 535], [124, 590]]];
+  const SEG = [[[145, 386], [136, 430], [130, 480]], [[130, 480], [128, 535], [124, 590]]];
   const armAt = s => { const k = Math.min(1, Math.floor(s)), t = Math.min(1, s - k), [a, b, c] = SEG[k];
     const p = [(1 - t) * (1 - t) * a[0] + 2 * t * (1 - t) * b[0] + t * t * c[0], (1 - t) * (1 - t) * a[1] + 2 * t * (1 - t) * b[1] + t * t * c[1]];
     const d = [2 * (1 - t) * (b[0] - a[0]) + 2 * t * (c[0] - b[0]), 2 * (1 - t) * (b[1] - a[1]) + 2 * t * (c[1] - b[1])], l = Math.hypot(d[0], d[1]);
@@ -183,28 +183,29 @@ const CK = (() => {
   const armS = y => (y <= 480 ? (() => { for (let s = 0; s <= 1; s += .01) if (armAt(s).p[1] >= y) return s; return 1; })() : (() => { for (let s = 1; s <= 2; s += .01) if (armAt(s).p[1] >= y) return s; return 2; })());
   /* sleeve: returns {d, cuff:[outer,inner], seam} for the left arm */
   const sleevePath = (o) => {
-    const sE = o.end ?? armS(o.endY ?? 452), s0 = o.s0 || 0, w0 = o.w0 ?? 31, w1 = o.w1 ?? 28, puff = o.puff || 0, flare = o.flare || 0, N = 12;
+    const requestedEnd = o.endY ?? 452, endY = requestedEnd >= 560 ? Math.min(587, requestedEnd + 16) : requestedEnd;
+    const sE = o.end ?? armS(endY), s0 = o.s0 || 0, w0 = o.w0 ?? 31, w1 = o.w1 ?? 28, puff = o.puff || 0, flare = o.flare || 0, N = 12;
     const outer = [], inner = [];
     for (let i = 0; i <= N; i++) { const u = i / N, s = s0 + (sE - s0) * u, a = armAt(s), w = (w0 + (w1 - w0) * u + puff * Math.sin(Math.PI * Math.min(1, u * 1.05)) + flare * u * u) / 2;
       outer.push([a.p[0] + a.n[0] * w, a.p[1] + a.n[1] * w]); inner.push([a.p[0] - a.n[0] * w, a.p[1] - a.n[1] * w]); }
-    const capTop = o.cap || [[164, 365], [150, 369]];
-    const iStart = inner.findIndex(p => p[1] > (o.pit || 402));
+    const capTop = o.cap || [[162, 366], [148, 370]];
+    const iStart = inner.findIndex(p => p[1] > (o.pit || 408));
     const innerUp = inner.slice(Math.max(1, iStart)).reverse();
-    const pitPt = [o.pitX || 163, o.pit || 402];
-    const d = runs([[...capTop, ...outer.slice(0, 1)], outer, [outer[N], inner[N]], [inner[N], ...innerUp, pitPt], [pitPt, [o.seamX || 164, 384], capTop[0]]]);
+    const pitPt = [o.pitX || 156, o.pit || 408];
+    const d = runs([[...capTop, ...outer.slice(0, 1)], outer, [outer[N], inner[N]], [inner[N], ...innerUp, pitPt], [pitPt, [o.seamX || 156, 384], capTop[0]]]);
     const a = armAt(sE);
-    return { d, outer, inner, end: a, sE, seam: cr([capTop[0], [o.seamX || 164, 384], pitPt]) };
+    return { d, outer, inner, end: a, sE, seam: cr([capTop[0], [o.seamX || 156, 384], pitPt]) };
   };
   const sleeve = (c, o = {}) => {
     const S = sleevePath(o), A = S.end, wE = Math.hypot(S.outer[12][0] - S.inner[12][0], S.outer[12][1] - S.inner[12][1]) / 2;
-    let s = cloth(S.d, c, { pat: o.pat, patOp: o.patOp, shadeUrl: (G(), 'url(#gkSleeve)'), sheen: o.sheen, edgeOp: .5 });
+    let s = cloth(S.d, c, { pat: o.pat, patOp: o.patOp, shadeUrl: (G(), 'url(#gkSleeve)'), sheen: o.sheen, edgeOp: .32 });
     // creases
     const fc = o.foldC || c;
     if (S.sE > .5) { const m = armAt(S.sE * .55); s += fold(`M${pt([m.p[0] - m.n[0] * 8, m.p[1] - m.n[1] * 8 + 6])} Q${pt([m.p[0], m.p[1] - 2])} ${pt([m.p[0] + m.n[0] * 9, m.p[1] + m.n[1] * 9 - 3])}`, fc, 2.4, .3); }
     if (S.sE > 1.1) { const e = armAt(1.02); s += fold(`M${pt([e.p[0] - e.n[0] * 10, e.p[1] + 3])} Q${pt([e.p[0] + 2, e.p[1] - 5])} ${pt([e.p[0] + e.n[0] * 10, e.p[1] - 4])}`, fc, 2.4, .34) + fold(`M${pt([e.p[0] - e.n[0] * 8, e.p[1] + 12])} Q${pt([e.p[0] + 1, e.p[1] + 6])} ${pt([e.p[0] + e.n[0] * 9, e.p[1] + 6])}`, fc, 2, .26);
       const lo = armAt(S.sE * .9); s += fold(`M${pt([lo.p[0] - lo.n[0] * 9, lo.p[1] - 4])} Q${pt([lo.p[0], lo.p[1] + 3])} ${pt([lo.p[0] + lo.n[0] * 9, lo.p[1] - 2])}`, fc, 2, .24); }
     s += shine(cr(S.outer.slice(1, 8).map((p, i) => { const a = armAt(S.sE * (i + 1) / 12); return [p[0] - a.n[0] * 6, p[1] - a.n[1] * 6]; })), 3.4, .22);
-    if (o.seam !== false) s += st(S.seam, sh(c, -38), .55, 1);
+    if (o.seam !== false) s += st(S.seam, sh(c, -30), .28, .7);
     // cuff band / hem
     const co = S.outer[12], ci = S.inner[12], t = A.t;
     if (o.cuff) { const h = o.cuff, cc = o.cuffC || sh(c, -10), q = `M${pt(co)} L${pt(ci)} L${pt([ci[0] - t[0] * h, ci[1] - t[1] * h])} L${pt([co[0] - t[0] * h, co[1] - t[1] * h])} Z`;

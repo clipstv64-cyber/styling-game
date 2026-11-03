@@ -1,22 +1,27 @@
-# Style Studio — Atelier Edition V4
+# Style Studio — Atelier Edition V5
 
-Grafisch überarbeitetes Styling-Spiel mit neuen ImageGen-Hintergründen, Werkzeugen und Figurenmaterialien.
+Styling-Spiel mit überarbeiteter Figur, geschlossenen Haaransätzen und neu gestalteter Kleidung.
 
-## Fertiges Spiel herunterladen
+## Herunterladen
 
-[**Neue Version mit überarbeiteter Figur herunterladen**](https://github.com/clipstv64-cyber/styling-game/raw/refs/heads/grafik-atelier/downloads/Style-Studio-Atelier-v4-kompakt.zip)
+[**Komplettes Repository als ZIP**](https://github.com/clipstv64-cyber/styling-game/archive/refs/heads/grafik-atelier.zip)
 
-ZIP vollständig entpacken. Die Spiel-Dateien und alle neuen Grafiken sind enthalten.
+[**Kompakte Spielversion V5 als ZIP**](https://github.com/clipstv64-cyber/styling-game/raw/refs/heads/grafik-atelier/downloads/Style-Studio-Atelier-v5-kompakt.zip)
 
-## Neue Figur und kleinere Dateien
+## Neue Kleidung
 
-Die V4 schließt unbeabsichtigte Lücken am Scheitel und an den Schläfen, auch bei einzeln gefärbten Strähnen. Rasieren und Nachwachsen verändern die Haarabdeckung weiterhin gezielt. Die um rund 12 Prozent verkleinerten Augen und die darauf abgestimmten Mascara-Koordinaten bleiben erhalten. Die Haare fallen breiter und leicht geschwungen über die Schultern. Schultern, Hals und Körperlänge sind angepasst; alle Kleidungsstücke folgen denselben Proportionen. Das Gesicht besteht weiterhin aus separat gerenderten ImageGen-Komponenten. Styling, Augenfarben und Make-up bleiben bearbeitbar. Die Grafiken verwenden platzsparendes WebP bei unveränderten Bildmaßen.
+- Angepasste Schulter- und Ärmelansätze sowie längere Bündchen für die neue Figur.
+- Neu gezeichnete Schnitte für Ringelshirt, T-Shirt, Tanktop, Hoodie und Abendkleid.
+- Sechs ImageGen-Stoffoberflächen: Baumwolle, Satin, Strick, Denim, Leder und Spitze.
+- Neue Materialeffekte für alle 88 Kleidungs-, Schuh- und Taschenmodelle.
+- Neu berechnete Vorschaubilder mit denselben Proportionen wie die Spielfigur.
+- Alle 125 Auswahlstücke und 586 Farbvarianten bleiben erhalten.
 
-[Vorschau der neuen Figur](https://github.com/clipstv64-cyber/styling-game/blob/grafik-atelier/previews/figur-v4.png)
+[**Neue Outfits ansehen**](https://github.com/clipstv64-cyber/styling-game/blob/grafik-atelier/previews/kleidung-v5.md)
 
 ## Starten
 
-Im entpackten Spielordner:
+ZIP vollständig entpacken. Im Spielordner:
 
 ```sh
 python3 -m http.server 8000
@@ -25,5 +30,3 @@ python3 -m http.server 8000
 Danach `http://localhost:8000` im Browser öffnen. Keine npm-Installation und kein API-Schlüssel erforderlich.
 
 [Ausführliche Anleitung](README-DE.md) · [Geprüfte Funktionen](PRUEFUNG.md)
-
-Der Quellcode liegt ebenfalls vollständig in diesem Repository.
