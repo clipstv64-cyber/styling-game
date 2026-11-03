@@ -331,6 +331,42 @@ const HAIR = (() => {
   }
   function runPath(ctx, g, a, b) { ctx.beginPath(); smoothTo(ctx, g.L.slice(a, b + 1), true); smoothTo(ctx, g.R.slice(a, b + 1).reverse(), false); ctx.closePath(); }
 
+  // Cover the scalp in follicle-sized sectors. The lower edge follows the live
+  // guide points; missing follicles remain bare instead of being bridged over.
+  function drawScalpCoverage(ctx, list, colorFor) {
+    const follicles = list.filter(s => s.cap).map(s => ({
+      s, angle: Math.atan2((s.cap.y - C.y) / ERY, (s.cap.x - C.x) / ERX),
+    })).sort((a, b) => a.angle - b.angle);
+    if (!follicles.length) return;
+    const alive = f => f.s.pts.length > 1;
+    const rx = ERX + 6, ry = ERY + 8;
+    const lowerEdge = follicles.slice().reverse().map(({ s }) => {
+      const p = s.pts[Math.min(2, s.pts.length - 1)]; return [p.x, p.y];
+    });
+    ctx.save(); ctx.beginPath();
+    ctx.ellipse(C.x, C.y, rx, ry, 0, -Math.PI, 0);
+    smoothTo(ctx, lowerEdge, false); ctx.closePath(); ctx.clip();
+    for (let i = 0; i < follicles.length; i++) {
+      const f = follicles[i]; if (!alive(f)) continue;
+      let lo = i ? (follicles[i - 1].angle + f.angle) / 2 : -Math.PI;
+      let hi = i + 1 < follicles.length ? (f.angle + follicles[i + 1].angle) / 2 : 0;
+      // Overlap only live neighbours, preventing anti-aliased seams while keeping
+      // deliberately shaved sectors open. Single coloured roots also get a tile.
+      if (i && alive(follicles[i - 1])) lo -= .008;
+      if (i + 1 < follicles.length && alive(follicles[i + 1])) hi += .008;
+      const col = colorFor(f.s.col[0]);
+      const light = ctx.createLinearGradient(0, C.y - ry, 0, 200);
+      light.addColorStop(0, col.r);
+      light.addColorStop(.38, U.mix(col.f, '#fff0cb', .44));
+      light.addColorStop(1, col.f);
+      ctx.beginPath(); ctx.moveTo(C.x, C.y);
+      ctx.lineTo(C.x + Math.cos(lo) * rx, C.y + Math.sin(lo) * ry);
+      ctx.ellipse(C.x, C.y, rx, ry, 0, lo, hi); ctx.closePath();
+      ctx.fillStyle = light; ctx.fill();
+    }
+    ctx.restore();
+  }
+
   function drawSet(ctx, list, dim) {
     const C2 = (c, extra = 0) => { const k = wc(c), dd = dim + extra; return dd ? { f: U.shade(k.f, dd), r: U.shade(k.r, dd), t: U.shade(k.t, dd), o: U.shade(k.o, dim) } : k; };
     // Join pristine crown roots into one silhouette; shaved follicles reveal the scalp.
@@ -339,23 +375,7 @@ const HAIR = (() => {
       ctx.beginPath(); ctx.ellipse(200,212,101,117,0,Math.PI,Math.PI*2); ctx.closePath(); ctx.fill();
     }
     const G = list.map(s => ({ s, g: geom(s) })), wet = state.wet;
-    // A continuous curved crown replaces the old triangular caps. Live follicles
-    // and their root colours define every patch; shaving separates the surface.
-    if(list.length && list[0].layer==='front') {
-      let group=[];
-      const flush=()=>{
-        if(group.length<2){group=[];return;}
-        const first=group[0].g,last=group[group.length-1].g;
-        ctx.beginPath();smoothTo(ctx,first.L.slice(0,9),true);
-        smoothTo(ctx,group.map(({g})=>[g.D[8].x,g.D[8].y]),false);
-        smoothTo(ctx,last.R.slice(0,9).reverse(),false);
-        smoothTo(ctx,group.slice().reverse().map(({g})=>[g.D[0].x,g.D[0].y]),false);ctx.closePath();
-        const col=C2(group[0].s.col[0]),gr=ctx.createLinearGradient(0,95,0,190);
-        gr.addColorStop(0,col.r);gr.addColorStop(.38,U.mix(col.f,'#fff0cb',.44));gr.addColorStop(1,col.f);
-        ctx.fillStyle=gr;ctx.fill();group=[];
-      };
-      for(const item of G){if(item.s.cap&&item.g){if(group.length&&group[0].s.col[0]!==item.s.col[0])flush();group.push(item);}else flush();}flush();
-    }
+    if (list.length && list[0].layer === 'front') drawScalpCoverage(ctx, list, C2);
     // Bridge neighbouring fringe fibers with the same lit surface, following their
     // live tips. Removed follicles split the patch so shaved gaps remain visible.
     if(list.length && list[0].layer==='front') {

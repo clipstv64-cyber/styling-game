@@ -1,4 +1,4 @@
-# Style Studio — Atelier Edition V3
+# Style Studio — Atelier Edition V4
 
 Komplettes Browser-Spiel mit neu gestalteten Räumen, Werkzeugen und Figurenmaterialien.
 
@@ -28,6 +28,7 @@ Anschließend die lokale Seite auf Port 8000 im Browser öffnen. Es sind keine n
 - Neues Gesicht aus separaten ImageGen-Komponenten: modellierte Nase und Haut, weichere Augenform, glänzende Lippen und fein gezeichnete Augenbrauen.
 - Rund 12 Prozent kleinere Augen mit passend skalierten Wimpern und Mascara-Pinselkoordinaten.
 - Etwas breiterer, geschwungener Haarfall mit weichen Spitzen.
+- Geschlossener Haaransatz am Scheitel und an den Schläfen; einzelne Haarfarben erzeugen keine transparenten Zwischenräume. Gezielte Rasur und Nachwachsen bleiben sichtbar.
 - Breitere Schultern, kürzerer Hals und abgestimmte Körperlänge; Kleidung und Accessoires folgen denselben Körperproportionen, auch in den Wunschbildern.
 - Neue Grafiken im platzsparenden WebP-Format; Bildmaße und Transparenz bleiben erhalten.
 - Einheitliche Boutique-Oberfläche, neue Ablagen, Karten, Farbauswahl und Dialoge; Unterstützung für reduzierte Animationen.

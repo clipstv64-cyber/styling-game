@@ -1,6 +1,21 @@
-# Funktionsprüfung der Atelier Edition V3
+# Funktionsprüfung der Atelier Edition V4
 
-Im Chromium-Browser geprüft:
+## Neu für V4: Haaransatz
+
+26 Prüfungen im Chromium-Browser bestanden:
+
+- 10.348 Pixel im erwarteten Haarbereich geprüft: keine unbeabsichtigten Lücken.
+- Scheitel und beide Schläfen bei allen 14 Haarfarben vollständig bedeckt.
+- Auch einzelne, abwechselnd gefärbte Haaransätze bleiben geschlossen.
+- Nasse und gelockte Haare behalten die Abdeckung am Ansatz.
+- Schneiden verändert weiterhin die Haarlänge.
+- Lokale Rasur legt nur den betroffenen Bereich frei; Nachwachsen schließt ihn wieder.
+- Nach vollständiger Rasur und Ende der Fallanimation bleibt keine feste Haarkappe zurück.
+- Keine JavaScript-Fehler in diesen Prüfungen.
+
+## Allgemeine Spielabläufe
+
+Diese Spielabläufe wurden bereits für V3 im Chromium-Browser geprüft:
 
 - Alle Haarwerkzeuge: Schneiden, Rasieren, Nachwachsen, Kämmen, Locken, Glätten, lokale und vollständige Färbung, Shampoo, Ausspülen, Föhnen und Haarspray.
 - Alle Make-up-Werkzeuge: Maske, Schwamm, Teint, Verblenden, Linsen, Lidschatten, Eyeliner, Mascara, Rouge, Lippen, Glow, Sommersprossen und Sticker.
