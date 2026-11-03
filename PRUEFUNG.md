@@ -1,4 +1,4 @@
-# Funktionsprüfung der Atelier Edition V2
+# Funktionsprüfung der Atelier Edition V3
 
 Im Chromium-Browser geprüft:
 
@@ -12,4 +12,4 @@ Im Chromium-Browser geprüft:
 
 Die Tests prüfen tatsächliche Zustandsänderungen und gemalte Pixel, nicht nur das Vorhandensein von Schaltflächen. Eine Prüfung auf realen iOS-/Android-Geräten war nicht Teil dieses Durchlaufs.
 
-Die Prüfungen wurden nach dem Einbau des neuen Gesichts und der komprimierten WebP-Grafiken erneut durchgeführt. Alle 125 Kleidungsstücke sowie die Styling-Werkzeuge und der Kundenablauf wurden geprüft.
+Die Prüfungen wurden nach der Verkleinerung der Augen und der Anpassung von Haarführung und Körperproportionen erneut durchgeführt. Alle 125 Kleidungsstücke sowie die Styling-Werkzeuge und der Kundenablauf wurden geprüft.

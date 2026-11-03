@@ -63,7 +63,7 @@ const HAIR = (() => {
     }
     for (let i = 0; i < 500; i++) step();
     for (const s of S) {
-      if (s.layer === 'back' || s.zone === 'long') { trimTo(s, s.zone==='long' ? 530-(s.drape||0)*.7 : 548-14*Math.pow(Math.abs(s.rx-200)/110,1.5)); s.blunt=false; }
+      if (s.layer === 'back' || s.zone === 'long') { trimTo(s, s.zone==='long' ? 538-(s.drape||0)*.6 : 554-17*Math.pow(Math.abs(s.rx-200)/110,1.5)); s.blunt=false; }
       else { trimTo(s, s.fringe + 4); s.blunt = false; }
     }
     for (let i = 0; i < 200; i++) step();
@@ -95,13 +95,13 @@ const HAIR = (() => {
           for (let i = 2; i < m; i++) { const c = P[i], r = s.rest[i]; c.x += (r.x - c.x) * .35 * s.spray; c.y += (r.y - c.y) * .35 * s.spray; }
         }
         if (s.zone === 'long' && s.spray < .5) { const side = s.rx < C.x ? -1 : 1, k = .035 * (1 - 2 * s.spray);
-          for (let i = 2; i < n; i++) { const p = P[i]; if (p.y < 245) continue; const u0 = Math.min(1, (p.y - 245) / 150), u = u0 * u0 * (3 - 2 * u0), xt = C.x + side * (92 - u * 30 - (s.drape || 0) * u); p.x += (xt - p.x) * k * u; } }
+          for (let i = 2; i < n; i++) { const p = P[i]; if (p.y < 245) continue; const u0 = Math.min(1, (p.y - 245) / 150), u = u0 * u0 * (3 - 2 * u0), sweep = 7 * Math.sin(Math.PI * U.clamp((p.y - 290) / 240, 0, 1)), xt = C.x + side * (92 - u * 18 - (s.drape || 0) * u * .5 + sweep); p.x += (xt - p.x) * k * u; } }
         if (s.zone === 'long') for (let i = 2; i < n; i++) {
           const p = P[i], qx = (p.x - C.x) / 95, qy = (p.y - 214) / 112, q = qx * qx + qy * qy;
           if (q < 1) { const f = 1 / Math.sqrt(q || .0001), w = Math.min(1, Math.max(0, (p.y - 140) / 30)); p.x += (C.x + (p.x - C.x) * f - p.x) * w; p.y += (214 + (p.y - 214) * f - p.y) * w; }
         }
         if (s.layer === 'back' && !s.nape && s.spray < .5 && Math.abs(s.rx - C.x) > 70) { const side = s.rx < C.x ? -1 : 1, k = .02 * (1 - 2 * s.spray);
-          for (let i = 2; i < n; i++) { const p = P[i]; if (p.y < 300) continue; const u = Math.min(1, (p.y - 300) / 120), xt = C.x + side * (100 - u * 22); if (side * (p.x - xt) > 0) p.x += (xt - p.x) * k * u; } }
+          for (let i = 2; i < n; i++) { const p = P[i]; if (p.y < 300) continue; const u = Math.min(1, (p.y - 300) / 120), xt = C.x + side * (100 - u * 12); if (side * (p.x - xt) > 0) p.x += (xt - p.x) * k * u; } }
         if (s.layer === 'back' && !s.nape) for (let i = 2; i < n; i++) {
           const p = P[i], qx = (p.x - C.x) / (ERX * 1.07), qy = (p.y - C.y) / (ERY * 1.03), q = qx * qx + qy * qy;
           if (q < 1) { const f = 1 / Math.sqrt(q || .0001); p.x = C.x + (p.x - C.x) * f; p.y = C.y + (p.y - C.y) * f; }

@@ -2,6 +2,10 @@
 /* Layered ImageGen face rig; painting and styling use the existing character coordinates. */
 (() => {
   const A=ART, sh=U.shade;
+  // Keep the smaller eyes and mascara brush on exactly the same coordinates.
+  A.EYE_TF='translate(150 216) scale(1.04) translate(-161 -217)';
+  A.eyeT=(x,y)=>[150+(x-161)*1.04,216+(y-217)*1.04];
+  A.BODY_TF='translate(200 312) scale(1.22 1.025) translate(-200 -320)';
   const atlas='img/atelier-face.webp';
   const sprite=(x,y,w,h,box,extra='')=>`<svg x="${x}" y="${y}" width="${w}" height="${h}" viewBox="${box}" preserveAspectRatio="none" overflow="hidden" style="width:${w}px;height:${h}px;overflow:hidden" ${extra}><image href="${atlas}" width="1254" height="1254"/></svg>`;
   const grey='<feColorMatrix type="saturate" values="0"/>';
@@ -43,12 +47,12 @@
   const oldBody=A.body;
   A.body=skin=>{
     const b=oldBody(skin);
-    const neck='M183,304 L217,304 L219,357 Q200,374 181,357 Z';
+    const neck='M181,309 L219,309 L220,355 Q200,371 180,355 Z';
     const torso='M184,354 L216,354 C230,361 248,365 256,378 C262,392 252,420 246,450 C240,480 234,500 234,522 C240,545 252,570 252,598 L148,598 C148,570 160,545 166,522 C166,500 160,480 154,450 C148,420 138,392 144,378 C152,365 170,361 184,354 Z';
     b.torso=`<path d="${neck}" fill="${skin}"/><path d="${neck}" fill="url(#atArm)"/><path d="${torso}" fill="${skin}"/><path d="${torso}" fill="url(#atArm)"/><ellipse cx="200" cy="322" rx="17" ry="10" fill="${sh(skin,-28)}" opacity=".25"/>`;
     return b;
   };
   // Give the doll natural shoulder width, applying the same transform to all clothes.
   for(const g of document.querySelectorAll('#char-anim > g')) if(g.id!=='L-head')
-    g.setAttribute('transform','translate(200 0) scale(1.16 1) translate(-200 0)');
+    g.setAttribute('transform',A.BODY_TF);
 })();

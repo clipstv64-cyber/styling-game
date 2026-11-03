@@ -1,4 +1,4 @@
-# Style Studio — Atelier Edition V2
+# Style Studio — Atelier Edition V3
 
 Komplettes Browser-Spiel mit neu gestalteten Räumen, Werkzeugen und Figurenmaterialien.
 
@@ -26,7 +26,9 @@ Anschließend die lokale Seite auf Port 8000 im Browser öffnen. Es sind keine n
 - 25 mit ImageGen gestaltete Werkzeugmotive. Die Spielablagen nutzen die passenden Motive für alle bisherigen Werkzeuge.
 - Mit ImageGen gestaltete Oberflächen für Gesicht, Haare und Stoffe, eingebunden in die bearbeitbaren SVG-/Canvas-Ebenen.
 - Neues Gesicht aus separaten ImageGen-Komponenten: modellierte Nase und Haut, weichere Augenform, glänzende Lippen und fein gezeichnete Augenbrauen.
-- Neu gezeichneter Haaransatz, weichere Haarspitzen und breitere Schultern mit gemeinsam angepasster Kleidung.
+- Rund 12 Prozent kleinere Augen mit passend skalierten Wimpern und Mascara-Pinselkoordinaten.
+- Etwas breiterer, geschwungener Haarfall mit weichen Spitzen.
+- Breitere Schultern, kürzerer Hals und abgestimmte Körperlänge; Kleidung und Accessoires folgen denselben Körperproportionen, auch in den Wunschbildern.
 - Neue Grafiken im platzsparenden WebP-Format; Bildmaße und Transparenz bleiben erhalten.
 - Einheitliche Boutique-Oberfläche, neue Ablagen, Karten, Farbauswahl und Dialoge; Unterstützung für reduzierte Animationen.
 

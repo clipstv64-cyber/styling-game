@@ -69,11 +69,11 @@
     // front: fringe + face-framing locks
     let bottom = '';
     const xs = []; for (let x = 290; x >= 110; x -= 9) xs.push(x);
-    bottom = xs.map((x, k) => (curly ? `A8,7 0 0 1 ${x},${164}` : `L${x},${166 + (k % 2 ? 6 : 0) - Math.sin((x - 110) / 180 * Math.PI) * 2}`)).join(' ');
+    bottom = xs.map((x, k) => (curly ? `A8,7 0 0 1 ${x},${164}` : `L${x},${170 + Math.cos((x - 200) / 90 * Math.PI / 2) * 3 + (k % 2 ? .7 : -.7)}`)).join(' ');
     const fr = `M112,178 C108,118 148,86 200,86 C252,86 292,118 288,178 L290,166 ${bottom} L110,166 Z`;
     const ly = Math.min(y1, 470), lock = curly
       ? `M98,150 ${Array.from({ length: 8 }, (_, k) => `Q${k % 2 ? 90 : 104},${150 + (ly - 150) * (k + .5) / 8} ${98 + (k % 2 ? -3 : 3)},${150 + (ly - 150) * (k + 1) / 8}`).join(' ')} L124,${ly - 4} ${Array.from({ length: 8 }, (_, k) => `Q${k % 2 ? 130 : 118},${ly - (ly - 160) * (k + .5) / 8} 124,${ly - (ly - 160) * (k + 1) / 8}`).join(' ')} Z`
-      : `M100,152 C96,230 102,320 106,${ly} L126,${ly - 6} C122,320 118,230 124,166 Z`;
+      : `M100,152 C96,230 106,340 116,${ly} L138,${ly - 8} C132,340 116,245 124,166 Z`;
     let tex = ''; for (let i = 0; i < 12; i++) { const x = 126 + i * 13; tex += `<path d="M${200 + (x - 200) * .3},${92} C${x},${110} ${x},${140} ${x + (x - 200) * .05},${162}" stroke="${i % 2 ? dk : hl}" stroke-width="1.2" fill="none" opacity=".5"/>`; }
     return ART.mirror(`<path d="${lock}" fill="${c}"/><path d="${lock}" fill="none" stroke="${sh(c, -42)}" stroke-width="1.8"/><path d="M108,180 C106,250 110,320 114,${ly - 10}" stroke="${hl}" stroke-width="2" fill="none" opacity=".45"/>`)
       + `<path d="${fr}" fill="${c}"/>` + tex + `<path d="M126,124 C150,100 250,100 274,124" stroke="${hl}" stroke-width="8" fill="none" opacity=".4" stroke-linecap="round"/><path d="${fr}" fill="none" stroke="${sh(c, -42)}" stroke-width="2"/>`;
@@ -98,7 +98,7 @@
     const feat = ART.headFeat({ ...L, happy: false }).replace(/ id="eyes(-shut)?"/g, '');
     const shoes = art(o.shoes).body, over = !o.dress && o.bottom && byId(o.bottom.id) && byId(o.bottom.id).overShoes;
     return `<svg class="${cls}" viewBox="${vb}" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">`
-      + hairSVG(hair.color, hair.len, hair.curly, 'back') + '<g transform="translate(200 0) scale(1.16 1) translate(-200 0)">' + b.legs + art(o.legwear).body + (over ? shoes : '') + b.torso + bottom.body + (over ? '' : shoes) + dress.body + top.body + b.arms
+      + hairSVG(hair.color, hair.len, hair.curly, 'back') + `<g transform="${ART.BODY_TF}">` + b.legs + art(o.legwear).body + (over ? shoes : '') + b.torso + bottom.body + (over ? '' : shoes) + dress.body + top.body + b.arms
       + (outer.sleeves ? '' : dress.sleeves + top.sleeves) + outer.body + outer.sleeves + art(o.bag).body + b.hands + art(o.necklace).body
       + '</g>' + ART.headBase(L) + under + feat + lips + hairSVG(hair.color, hair.len, hair.curly, 'front') + art(o.ear).body + art(o.glasses).body + art(o.head).body + '</svg>';
   }
