@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<title>Style Studio ✨</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/boutique.css">
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <linearGradient id="giMetal" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#8b96aa"/><stop offset=".42" stop-color="#fbfcfe"/><stop offset=".62" stop-color="#c3ccd9"/><stop offset="1" stop-color="#77839a"/></linearGradient>
+  <linearGradient id="giMetalV" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fbfcfe"/><stop offset=".5" stop-color="#c3ccd9"/><stop offset="1" stop-color="#7c879b"/></linearGradient>
+  <linearGradient id="giGold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff2bd"/><stop offset=".35" stop-color="#e5b24a"/><stop offset=".55" stop-color="#fff0b0"/><stop offset=".8" stop-color="#c58a28"/><stop offset="1" stop-color="#f0cc6c"/></linearGradient>
+  <linearGradient id="giSide" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity=".42"/><stop offset=".3" stop-color="#fff" stop-opacity="0"/><stop offset=".72" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".24"/></linearGradient>
+  <linearGradient id="giTop" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".55"/><stop offset=".5" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".18"/></linearGradient>
+  <radialGradient id="giBall" cx=".35" cy=".3" r=".8"><stop offset="0" stop-color="#fff" stop-opacity=".65"/><stop offset=".45" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".22"/></radialGradient>
+  <linearGradient id="giGlass" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity=".7"/><stop offset=".25" stop-color="#fff" stop-opacity=".1"/><stop offset=".8" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#fff" stop-opacity=".35"/></linearGradient>
+</defs></svg>
+<div id="app" data-page="hair">
+
+  <div id="scene">
+    <div class="bg" id="bg-hair"></div>
+    <div class="bg" id="bg-makeup"></div>
+    <div class="bg" id="bg-dress"></div>
+
+    <canvas id="hb" class="charbox"></canvas>
+    <svg id="char" class="charbox" viewBox="40 22 320 560" preserveAspectRatio="xMidYMax meet" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="hairGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop id="hg1" offset="0" stop-color="#7a5236"/><stop id="hg2" offset=".5" stop-color="#5c3a24"/><stop id="hg3" offset="1" stop-color="#3e2618"/>
+        </linearGradient>
+        <radialGradient id="irisGrad" cx=".5" cy=".42" r=".6">
+          <stop id="ig1" offset="0" stop-color="#c58a5a"/><stop id="ig2" offset=".55" stop-color="#7a4a2a"/><stop id="ig3" offset="1" stop-color="#3a2010"/>
+        </radialGradient>
+        <linearGradient id="lipGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop id="lg1" offset="0" stop-color="#ff8fa8"/><stop id="lg2" offset="1" stop-color="#d9446a"/>
+        </linearGradient>
+        <radialGradient id="faceShade" cx=".5" cy=".4" r=".62">
+          <stop offset=".72" stop-color="#5a2a1a" stop-opacity="0"/><stop offset="1" stop-color="#5a2a1a" stop-opacity=".2"/>
+        </radialGradient>
+        <radialGradient id="faceGlow" cx=".5" cy=".5" r=".5">
+          <stop offset="0" stop-color="#fff" stop-opacity=".45"/><stop offset="1" stop-color="#fff" stop-opacity="0"/>
+        </radialGradient>
+        <linearGradient id="limbShade" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stop-color="#5a2a1a" stop-opacity=".16"/><stop offset=".3" stop-color="#5a2a1a" stop-opacity="0"/><stop offset=".7" stop-color="#fff" stop-opacity=".07"/><stop offset="1" stop-color="#5a2a1a" stop-opacity=".16"/>
+        </linearGradient>
+        <linearGradient id="fabShade" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stop-color="#000" stop-opacity=".2"/><stop offset=".22" stop-color="#000" stop-opacity="0"/><stop offset=".6" stop-color="#fff" stop-opacity=".1"/><stop offset="1" stop-color="#000" stop-opacity=".22"/>
+        </linearGradient>
+        <radialGradient id="scleraGrad" cx=".55" cy=".6" r=".65"><stop offset="0" stop-color="#ffffff"/><stop offset=".7" stop-color="#fbf5f8"/><stop offset="1" stop-color="#e9dbe4"/></radialGradient>
+        <radialGradient id="pupilGrad" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#0b0508"/><stop offset=".75" stop-color="#140a10"/><stop offset="1" stop-color="#140a10" stop-opacity=".2"/></radialGradient>
+        <clipPath id="eyeClip"><path d="M134,220 C138,200 152,193 162,193 C176,193 186,203 188,218 C184,234 172,241 160,241 C148,241 136,233 134,220 Z"/></clipPath>
+        <linearGradient id="lipShade" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".12"/><stop offset=".55" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#5a0a20" stop-opacity=".25"/></linearGradient>
+        <linearGradient id="browGrad" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".6" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#fff" stop-opacity=".25"/></linearGradient>
+        <linearGradient id="eyeTop" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#5a3a50" stop-opacity=".55"/><stop offset=".45" stop-color="#5a3a50" stop-opacity="0"/>
+        </linearGradient>
+        <linearGradient id="lensDark" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#2a1838" stop-opacity=".92"/><stop offset="1" stop-color="#7a4fc9" stop-opacity=".75"/>
+        </linearGradient>
+        <filter id="blur2" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="2"/></filter>
+        <filter id="blur4" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="4"/></filter>
+        <pattern id="pSeq" width="9" height="9" patternUnits="userSpaceOnUse"><circle cx="2.5" cy="2.5" r="1.7" fill="#fff" opacity=".55"/><circle cx="7" cy="7" r="1.4" fill="#fff" opacity=".3"/><circle cx="7" cy="2.5" r="1" fill="#000" opacity=".12"/></pattern>
+        <pattern id="pFlow" width="26" height="26" patternUnits="userSpaceOnUse"><g fill="#fff" opacity=".8"><circle cx="8" cy="6" r="2.4"/><circle cx="11" cy="9" r="2.4"/><circle cx="8" cy="12" r="2.4"/><circle cx="5" cy="9" r="2.4"/></g><circle cx="8" cy="9" r="1.6" fill="#ffd54a"/><g fill="#fff" opacity=".6"><circle cx="20" cy="19" r="1.8"/><circle cx="22" cy="21" r="1.8"/><circle cx="20" cy="23" r="1.8"/><circle cx="18" cy="21" r="1.8"/></g></pattern>
+        <pattern id="pKnit" width="12" height="10" patternUnits="userSpaceOnUse"><path d="M0,0 L6,6 L12,0" fill="none" stroke="#000" stroke-opacity=".1" stroke-width="2"/></pattern>
+        <pattern id="pDenim" width="6" height="6" patternUnits="userSpaceOnUse"><path d="M0,6 L6,0" stroke="#fff" stroke-opacity=".14" stroke-width="1"/></pattern>
+        <pattern id="pStripe" width="20" height="20" patternUnits="userSpaceOnUse"><rect width="20" height="7" fill="#fff" opacity=".9"/></pattern>
+        <pattern id="pHibis" width="40" height="40" patternUnits="userSpaceOnUse"><g fill="#fff" opacity=".85"><circle cx="10" cy="7" r="4"/><circle cx="15" cy="11" r="4"/><circle cx="13" cy="17" r="4"/><circle cx="7" cy="17" r="4"/><circle cx="5" cy="11" r="4"/></g><circle cx="10" cy="12" r="2" fill="#ffd54a"/><ellipse cx="30" cy="30" rx="7" ry="3" fill="#2f9e6a" opacity=".55" transform="rotate(-30 30 30)"/></pattern>
+        <pattern id="pWeave" width="8" height="8" patternUnits="userSpaceOnUse"><path d="M0,4 L8,4 M4,0 L4,8" stroke="#8a5a20" stroke-opacity=".25" stroke-width="1.5"/></pattern>
+        <pattern id="pSpark" width="34" height="34" patternUnits="userSpaceOnUse"><path d="M8,4 l1.5,4 4,1.5 -4,1.5 -1.5,4 -1.5,-4 -4,-1.5 4,-1.5 Z" fill="#fff" opacity=".85"/><circle cx="24" cy="22" r="1.4" fill="#fff" opacity=".8"/><circle cx="16" cy="28" r="1" fill="#fff" opacity=".6"/></pattern>
+        <pattern id="maskTex" width="14" height="14" patternUnits="userSpaceOnUse"><circle cx="4" cy="4" r="1.4" fill="#6fb46a" opacity=".55"/><circle cx="10" cy="11" r="1" fill="#e6ffe0" opacity=".7"/></pattern>
+      </defs>
+      <g id="char-anim">
+        <g id="L-legs"></g>
+        <g id="L-legwear"></g>
+        <g id="L-shoesunder"></g>
+        <g id="L-torso"></g>
+        <g id="L-neckunder"></g>
+        <g id="L-bottom"></g>
+        <g id="L-shoes"></g>
+        <g id="L-dress"></g>
+        <g id="L-top"></g>
+        <g id="L-arms"></g>
+        <g id="L-sleeves"></g>
+        <g id="L-outer"></g>
+        <g id="L-outersleeves"></g>
+        <g id="L-bag"></g>
+        <g id="L-hands"></g>
+        <g id="L-necklace"></g>
+        <g id="L-head"></g>
+        <g id="L-earrings"></g>
+      </g>
+    </svg>
+    <canvas id="mu" class="charbox"></canvas>
+    <svg id="char-feat" class="charbox" viewBox="40 22 320 560" preserveAspectRatio="xMidYMax meet" xmlns="http://www.w3.org/2000/svg"><g id="L-feat"></g><g id="L-facefx"></g></svg>
+    <canvas id="mo" class="charbox"></canvas>
+    <canvas id="hf" class="charbox"></canvas>
+    <svg id="char-top" class="charbox" viewBox="40 22 320 560" preserveAspectRatio="xMidYMax meet" xmlns="http://www.w3.org/2000/svg"><g id="L-earrings2"></g><g id="L-glasses"></g><g id="L-headwear"></g></svg>
+
+    <div id="shower" title="Dusche – auf die Haare ziehen"></div>
+    <button class="nav" id="nav-l" aria-label="Vorherige Seite">‹</button>
+    <button class="nav" id="nav-r" aria-label="Nächste Seite">›</button>
+    <div id="fx"></div>
+    <div id="ring"></div>
+    <div id="picker"></div>
+    <div id="table"></div>
+    <div id="hud"><span class="hud-ic"></span><div class="hud-bar"><i></i></div><b class="hud-pct">0%</b></div>
+  </div>
+
+  <div id="topbar">
+    <button class="tb-btn" id="btn-home" title="Zum Startbildschirm">🏠</button>
+    <button class="tb-btn" id="btn-reset" title="Neu anfangen">↺</button>
+    <button class="tb-btn" id="btn-sound" title="Ton an/aus">🔊</button>
+    <div id="title" class="pill"></div>
+  </div>
+
+  <div id="toast"></div>
+  <div id="modal"><div class="modal-card" id="modal-card"></div></div>
+</div>
+
+<script src="js/util.js"></script>
+<script src="js/art.js"></script>
+<script src="js/art2.js"></script>
+<script src="js/art3.js"></script>
+<script src="js/data.js"></script>
+<script src="js/clothes.js"></script>
+<script src="js/wear-tops.js"></script>
+<script src="js/wear-bottoms.js"></script>
+<script src="js/wear-dresses.js"></script>
+<script src="js/wear-outer.js"></script>
+<script src="js/wear-acc.js"></script>
+<script src="js/wear-upgrade.js"></script>
+<script src="js/wear-boxes.js"></script>
+<script src="js/wear-end.js"></script>
+<script src="js/atelier.js"></script>
+<script src="js/hair.js"></script>
+<script src="js/makeup.js"></script>
+<script src="js/game.js"></script>
+<script src="js/client.js"></script>
+<script src="js/bgfit.js"></script>
+</body>
+</html>

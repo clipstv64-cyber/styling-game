@@ -1,0 +1,72 @@
+/* Boutique visual theme — keeps all game layers and input coordinates intact. */
+:root{--pink:#df5892;--pink2:#f5abc9;--pinkD:#a93670;--purple:#9270c3;--purple2:#c4afe5;--purpleD:#674693;--ink:#48334e;--muted:#806d89;--soft:#fff6fa}
+html,body{background:radial-gradient(ellipse at 20% 15%,#f4e1ed,transparent 55%),radial-gradient(ellipse at 90% 85%,#d9d0ec,transparent 55%),#eae3ef}
+#app{box-shadow:0 0 0 1px #ffffffb3,0 24px 90px #4e36522b}
+#start{gap:14px;padding:24px 24px calc(24px + env(safe-area-inset-bottom));background:radial-gradient(ellipse at 15% 25%,#ffe6d7 0,transparent 52%),radial-gradient(ellipse at 90% 65%,#dbcaef 0,transparent 55%),linear-gradient(155deg,#fff9f4,#f9dfeb 55%,#e5d6ed)}
+#start::before{content:'';position:absolute;inset:14px;border:1px solid #ffffffbd;border-radius:30px;pointer-events:none}
+#start::after{content:'HAIR · MAKEUP · FASHION';position:absolute;bottom:calc(22px + env(safe-area-inset-bottom));font:600 9px var(--font);letter-spacing:3px;color:#87637e;pointer-events:none}
+.st-bg i{background:#b379a5;opacity:.35}
+.st-logo{margin:0;z-index:1}
+.st-logo::before{content:'DEIN KREATIVES ATELIER';font:600 9px var(--font);letter-spacing:3px;color:#956d89;margin-bottom:14px}
+.st-logo span{font-size:clamp(43px,8.5dvh,68px);letter-spacing:-2px;color:#62416d;text-shadow:0 2px 0 #fff9}
+.st-logo span+span{color:#c65a8b;text-shadow:0 2px 0 #fff9}
+.st-logo small{font-size:12px;font-weight:500;letter-spacing:1px;color:#886380;background:transparent;margin-top:9px}
+.st-pic{flex-shrink:0;width:min(57vw,235px,31dvh);border-radius:110px 110px 80px 80px;background:radial-gradient(ellipse at 50% 30%,#fffdf7,#fff0f5 65%,#eccde4);box-shadow:0 0 0 1px #dcb8ce,0 0 0 8px #ffffff80,0 18px 35px #98638324;position:relative}
+.st-pic::after{content:'';position:absolute;inset:7px;border:1px solid #ffffffa6;border-radius:inherit;pointer-events:none}
+.st-play{z-index:1;width:min(100%,270px);justify-content:center;margin-top:6px;padding:17px 24px;border-radius:19px;font-size:24px;letter-spacing:.3px;background:linear-gradient(135deg,#b44e84,#8755a8);box-shadow:0 4px 0 #74416e,0 10px 22px #914a8033,inset 0 1px 0 #ffffff59;animation:none;transition:transform .2s,box-shadow .2s}
+.st-play span{font-size:17px}.st-play:hover{transform:translateY(-2px);box-shadow:0 6px 0 #74416e,0 14px 25px #914a8033}.st-play:active{transform:translateY(3px);box-shadow:0 1px 0 #74416e}
+.st-free{z-index:1;color:#76556f;background:#ffffff80;border:1px solid #fff;padding:11px 24px;font-size:13px;box-shadow:0 4px 12px #936c8410}
+.tb-btn,.pill,.nav{background:#fffaf5ed;border:1px solid #ffffffd9;box-shadow:0 3px 0 #c49bb52b,0 6px 18px #57374c1c;backdrop-filter:blur(12px)}
+.tb-btn{border-radius:13px}.nav{color:#aa5a8a;width:44px;height:44px}
+#table{--tb-top:linear-gradient(180deg,#fffaf7,#f7e9ef);--tb-front:linear-gradient(180deg,#c991ae,#b67d9d);--tb-edge:#fff7ed;filter:drop-shadow(0 -5px 12px #63394c20)}
+#app[data-page="makeup"] #table{--tb-top:linear-gradient(180deg,#fffaff,#eee5f6);--tb-front:linear-gradient(180deg,#aa91c5,#9175b1);--tb-edge:#f6e6c9}
+#app[data-page="dress"] #table{--tb-top:linear-gradient(180deg,#fff7ee,#f0e0d6);--tb-front:linear-gradient(180deg,#bc9a88,#a17e70);--tb-edge:#fffaf3}
+#table .front span{font-size:13px;letter-spacing:3px;text-shadow:none}
+.card{border:1px solid #fff;background:linear-gradient(145deg,#fffefc,#f7edf4);border-radius:15px;box-shadow:0 2px 0 #dac2d6,0 5px 10px #73456b12;transition:box-shadow .18s,background .18s}
+.card .nm{color:#765f7b}.card:hover{background:#fff;box-shadow:0 2px 0 #cba6c0,0 6px 14px #73456b24}
+.cat{color:#786078;background:#fffcf9c9;border:1px solid #fff7}.cat.on{background:linear-gradient(135deg,#b193d0,#8c69af);box-shadow:0 2px 0 #71518e}
+#picker,.w-card,.modal-card{background:linear-gradient(150deg,#fffefb,#fff4fa);border:1px solid #fff;box-shadow:0 15px 50px #52304d30}
+#wish,#modal{backdrop-filter:blur(7px)}
+.w-face,.w-body{border-color:#ead2e3;background:linear-gradient(#fff9f6,#f0e3f3)}
+#toast,#bubble{box-shadow:0 8px 25px #70436025}
+button:focus-visible{outline:3px solid #7955ab;outline-offset:3px}
+@media(min-width:600px) and (min-height:760px){#app{height:calc(100dvh - 40px);margin:20px auto;border-radius:30px}}
+@media(max-height:650px){#start{gap:10px;padding-top:18px;padding-bottom:38px}.st-logo::before{margin-bottom:8px;font-size:8px}.st-logo small{margin-top:5px}.st-play{padding:12px 24px;font-size:21px}.st-free{padding:8px 20px}.st-pic{width:min(48vw,27dvh)}#start::after{bottom:14px;font-size:8px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+
+/* Atelier edition — generated environments and illustrated tools */
+#app{background:#edcfdf}
+.bg .atelier-room{width:100%;height:100%;display:block}
+#table{--tb-top:linear-gradient(155deg,#fffcf6 0%,#fff4f8 55%,#f4e3ef 100%);--tb-front:linear-gradient(#d4a1b9,#bb809e);--tb-edge:#fff1d4}
+#table .surface{clip-path:none;border-radius:26px 26px 0 0;border-top:3px solid var(--tb-edge);padding:12px 10px 5px;box-shadow:inset 0 1px 0 #fff}
+#app[data-page="dress"] #table .surface{clip-path:none;border-radius:26px 26px 0 0;padding-top:12px}
+#app[data-page="makeup"] #table{--tb-top:linear-gradient(145deg,#fffdf9,#f4eaf5);--tb-front:linear-gradient(#baa2cc,#9c7db4)}
+#app[data-page="dress"] #table{--tb-top:linear-gradient(145deg,#fff9ef,#f5e7eb);--tb-front:linear-gradient(#d2aa95,#ba907d)}
+#table .front{border-top:1px solid #fff8;box-shadow:inset 0 3px 7px #fff4}
+.items{row-gap:8px}
+.item .obj{filter:drop-shadow(0 4px 3px #68435b26)}
+.item .obj .atelier-icon{overflow:hidden;width:100%;height:100%;display:block}
+.item .lbl{font-size:10px;color:#654963;line-height:1.2;font-weight:500}
+.item.sel .obj{filter:drop-shadow(0 0 5px #e4a4d1) drop-shadow(0 5px 4px #9b557e33)}
+.item .dot{width:14px;height:14px;right:0;border-width:2px;box-shadow:0 1px 4px #60435c30}
+.tb-btn{font-size:18px;width:38px;height:38px;border-radius:13px;color:#a84a80}
+#title{font-weight:700;font-size:14px;padding:8px 12px;color:#593e62;border-radius:22px}
+#title .dots i{background:#ead5e2}#title .dots i.on{background:#cd6798}
+#shower{right:2px;top:16px}
+#picker{border-radius:24px;background:#fffafcf5;backdrop-filter:blur(16px)}
+.pk-head small{color:#80697f}.pk-head b{color:#704c76}
+.pal{padding-top:12px;padding-bottom:10px}
+.sw{transition:transform .15s,box-shadow .15s}.sw:hover{transform:translateY(-2px)}
+#wish-btn{border:1px solid #fff;border-radius:18px;transform:rotate(-3deg);box-shadow:0 3px 0 #c990ac,0 8px 18px #6d3e5f20}
+#wish-btn .wb-pic{background:linear-gradient(#fffaf7,#f1deed)}
+#submit-btn{border-radius:15px;background:linear-gradient(135deg,#84cdb3,#409f87);box-shadow:0 3px 0 #2d7f6b,0 7px 14px #287b5b25}
+#hud{border:1px solid #fff;background:#fffcf7ed}.hud-bar{background:#eedde8}.hud-bar i{background:linear-gradient(90deg,#dcb4da,#c771ab,#e3b461)}
+#start{background:linear-gradient(#fff4f0e8,#f4e0efed),url('../img/atelier-rooms.png') left center/300% 100%}
+.st-logo span{font-size:clamp(43px,7.7dvh,64px)}
+.st-pic{background:radial-gradient(ellipse at 50% 30%,#fffdf6,#f6e2ec);border-radius:120px 120px 80px 80px}
+#toast{max-width:82%;padding:10px 17px;font-size:13px;background:#624569ed;backdrop-filter:blur(8px);font-weight:500}
+.w-card,.modal-card{border-radius:28px}.w-head b,.r-title{color:#84547e}
+.btn{background:linear-gradient(135deg,#c775a4,#9662b2);box-shadow:0 3px 0 #7f4f86,0 8px 14px #93608326}
+.wl{background:#fff6f9;border-color:#ead5e3;color:#70536e}
+.wl.r-ok{background:#e3f6ed;border-color:#abd9c3}.wl.r-mid{background:#fff5dd;border-color:#ebd39b}.wl.r-no{background:#fde8ed;border-color:#e7b0c0}
+@media(max-width:350px){.item .lbl{font-size:9px}.tb-btn{width:33px!important;height:35px!important}#title{left:calc(50% + 43px);padding:7px 9px;font-size:13px}}
