@@ -58,12 +58,12 @@ const HAIR = (() => {
       let cap = { x: C.x + Math.cos(a) * ERX, y: C.y + Math.sin(a) * ERY };
       if (long) { const cx = x + sideX * 3, q = Math.min(.98, ((cx - C.x) / ERX) ** 2); cap = { x: cx, y: C.y - ERY * Math.sqrt(1 - q) }; }
       const s = mk('front', x, y, long ? -sideX * .08 : (x - 200) / 170 * .2, 1, long ? 62 : 8, long ? 19 : 17, cap, color);
-      s.zone = long ? 'long' : 'bang'; s.drape = long ? (e - .68) / .32 * 14 : 0; s.fringe = Math.max(y + 8, 167 + Math.pow(Math.abs(x - 200) / 72, 3) * 34);
+      s.zone = long ? 'long' : 'bang'; s.drape = long ? (e - .68) / .32 * 14 : 0; s.fringe = Math.max(y + 6, 169 + Math.pow(Math.abs(x - 200) / 72, 2) * 6);
       S.push(s);
     }
     for (let i = 0; i < 500; i++) step();
     for (const s of S) {
-      if (s.layer === 'back' || s.zone === 'long') trimTo(s, 545 + U.rand(-1.5, 1.5));
+      if (s.layer === 'back' || s.zone === 'long') { trimTo(s, s.zone==='long' ? 530-(s.drape||0)*.7 : 548-14*Math.pow(Math.abs(s.rx-200)/110,1.5)); s.blunt=false; }
       else { trimTo(s, s.fringe + 4); s.blunt = false; }
     }
     for (let i = 0; i < 200; i++) step();
@@ -277,7 +277,15 @@ const HAIR = (() => {
     const P = s.pts, n = P.length, cv = s.cv || [];
     let curly = false; for (let i = 0; i < n; i++) if ((cv[i] || 0) > .02) { curly = true; break; }
     const wetK = 1 - .7 * state.wet;
-    const pre = s.cap ? [{ x: s.cap.x, y: s.cap.y, ci: 0, c: 0, th: 0 }, { x: (s.cap.x * 2 + P[0].x) / 3, y: (s.cap.y * 2 + P[0].y) / 3, ci: 0, c: 0, th: 0 }, { x: (s.cap.x + P[0].x * 2) / 3, y: (s.cap.y + P[0].y * 2) / 3, ci: 0, c: 0, th: 0 }] : [];
+    const pre = [];
+    if(s.cap) {
+      const a=s.cap, b=P[0], dx=b.x-a.x;
+      const p1={x:a.x+dx*.65,y:a.y+6},p2={x:b.x-s.nx*12,y:b.y-s.ny*16};
+      for(let k=0;k<8;k++) { const t=k/8,u=1-t;
+        pre.push({x:u*u*u*a.x+3*u*u*t*p1.x+3*u*t*t*p2.x+t*t*t*b.x,
+          y:u*u*u*a.y+3*u*u*t*p1.y+3*u*t*t*p2.y+t*t*t*b.y,ci:0,c:0,th:0});
+      }
+    }
     if (!curly) return pre.concat(P.map((p, i) => ({ x: p.x, y: p.y, ci: i, c: 0, th: 0 })));
     const out = pre.concat([{ x: P[0].x, y: P[0].y, ci: 0, c: 0, th: 0 }]); let dist = 0; const SUB = 3;
     let total = 0; for (let i = 0; i < n - 1; i++) total += Math.hypot(P[i + 1].x - P[i].x, P[i + 1].y - P[i].y);
@@ -297,7 +305,7 @@ const HAIR = (() => {
 
   /* ---------- drawing ---------- */
   let colCache = {};
-  function wc(c) { const k = c + state.wet.toFixed(2); if (!colCache[k]) { const f = U.shade(c, -30 * state.wet); colCache[k] = { f, r: U.shade(f, -20), t: U.shade(f, 9), o: U.shade(c, (U.luma(c) > .55 ? -30 : -40) - 18 * state.wet) }; } return colCache[k]; }
+  function wc(c) { const k = c + state.wet.toFixed(2); if (!colCache[k]) { const f = U.shade(c, -30 * state.wet); colCache[k] = { f, r: U.shade(f, -12), t: U.shade(f, 9), o: U.shade(c, (U.luma(c) > .55 ? -30 : -40) - 18 * state.wet) }; } return colCache[k]; }
   function geom(s) {
     if (s.pts.length < 2) return null;
     const D = displayLine(s), n = D.length; if (n < 2) return null;
@@ -306,7 +314,7 @@ const HAIR = (() => {
       const a = D[Math.max(0, i - 1)], b = D[Math.min(n - 1, i + 1)];
       let tx = b.x - a.x, ty = b.y - a.y; const tl = Math.hypot(tx, ty) || 1; tx /= tl; ty /= tl;
       const t = i / Math.max(1, n - 1);
-      const capT = s.zone === 'long' ? (i < 4 ? .5 + i * .14 : 1) : s.cap ? (i < 3 ? 1.5 - i * .12 : 1) : (i < 3 ? 1.25 - i * .08 : 1);
+      const capT = s.cap ? Math.min(1,.06+i*.14) : Math.min(1,.08+i*.3);
       const prof = capT * (s.blunt ? 1 - .12 * t : s.zone === 'bang' ? (t < .7 ? 1 : 1 - Math.pow((t - .7) / .3, 2) * .55) : (t < .62 ? 1 - .1 * t : .94 * Math.pow(1 - (t - .62) / .38, .8) + .04));
       const w = s.w * prof * (1 - .25 * state.wet) * (1 + .5 * (D[i].c || 0)) / 2;
       W.push(w); L.push([D[i].x - ty * w, D[i].y + tx * w]); R.push([D[i].x + ty * w, D[i].y - tx * w]);
@@ -331,11 +339,45 @@ const HAIR = (() => {
       ctx.beginPath(); ctx.ellipse(200,212,101,117,0,Math.PI,Math.PI*2); ctx.closePath(); ctx.fill();
     }
     const G = list.map(s => ({ s, g: geom(s) })), wet = state.wet;
+    // A continuous curved crown replaces the old triangular caps. Live follicles
+    // and their root colours define every patch; shaving separates the surface.
+    if(list.length && list[0].layer==='front') {
+      let group=[];
+      const flush=()=>{
+        if(group.length<2){group=[];return;}
+        const first=group[0].g,last=group[group.length-1].g;
+        ctx.beginPath();smoothTo(ctx,first.L.slice(0,9),true);
+        smoothTo(ctx,group.map(({g})=>[g.D[8].x,g.D[8].y]),false);
+        smoothTo(ctx,last.R.slice(0,9).reverse(),false);
+        smoothTo(ctx,group.slice().reverse().map(({g})=>[g.D[0].x,g.D[0].y]),false);ctx.closePath();
+        const col=C2(group[0].s.col[0]),gr=ctx.createLinearGradient(0,95,0,190);
+        gr.addColorStop(0,col.r);gr.addColorStop(.38,U.mix(col.f,'#fff0cb',.44));gr.addColorStop(1,col.f);
+        ctx.fillStyle=gr;ctx.fill();group=[];
+      };
+      for(const item of G){if(item.s.cap&&item.g){if(group.length&&group[0].s.col[0]!==item.s.col[0])flush();group.push(item);}else flush();}flush();
+    }
+    // Bridge neighbouring fringe fibers with the same lit surface, following their
+    // live tips. Removed follicles split the patch so shaved gaps remain visible.
+    if(list.length && list[0].layer==='front') {
+      let group=[];
+      const flush=()=>{
+        if(group.length<2){group=[];return;}
+        const first=group[0].g,last=group[group.length-1].g;
+        ctx.beginPath();smoothTo(ctx,first.L,true);
+        smoothTo(ctx,group.map(({g})=>[g.D[g.D.length-1].x,g.D[g.D.length-1].y]),false);
+        smoothTo(ctx,last.R.slice().reverse(),false);
+        smoothTo(ctx,group.slice().reverse().map(({g})=>[g.D[0].x,g.D[0].y]),false);ctx.closePath();
+        const color=C2(group[0].s.col[0]),light=ctx.createLinearGradient(0,95,0,182);
+        light.addColorStop(0,color.r);light.addColorStop(.4,U.mix(color.f,'#fff0cb',.46));light.addColorStop(1,color.f);
+        ctx.fillStyle=light;ctx.fill();group=[];
+      };
+      for(const item of G){if(item.s.zone==='bang'&&item.g){if(group.length&&group[0].s.col[0]!==item.s.col[0])flush();group.push(item);}else flush();}flush();
+    }
     ctx.lineCap = 'round'; ctx.lineJoin = 'round';
     // 1) soft silhouette: drawn under everything, so only the outer edge and gaps show it
     for (const { s, g } of G) {
-      if (!g) continue;
-      const cc = s.cv.reduce((a, v) => a + v, 0) / Math.max(1, s.cv.length); for (const [a, b] of g.runs) { const a2 = s.cap ? Math.max(a, 4) : a; if (b - a2 < 1) continue; ctx.strokeStyle = C2(s.col[g.D[a].ci]).o; ctx.lineWidth = .65 - .3 * Math.min(1, cc * 1.5); runPath(ctx, g, a2, b); ctx.stroke(); }
+      if (!g || s.cap) continue;
+      const cc = s.cv.reduce((a, v) => a + v, 0) / Math.max(1, s.cv.length); for (const [a, b] of g.runs) { const a2 = s.cap ? Math.max(a, 8) : a; if (b - a2 < 1) continue; ctx.strokeStyle = C2(s.col[g.D[a].ci]).o; ctx.lineWidth = .65 - .3 * Math.min(1, cc * 1.5); runPath(ctx, g, a2, b); ctx.stroke(); }
     }
     // 2) every lock: body gradient (root→tip, incl. sheen band), rounded light streak, curl rings
     const wetK = 1 + .5 * wet;
@@ -345,7 +387,8 @@ const HAIR = (() => {
     for (const { s, g } of G) {
       if (!g) continue;
       const D = g.D, n = D.length, back = s.layer === 'back';
-      for (const [a, b] of g.runs) {
+      for (let [a, b] of g.runs) {
+        if(s.cap) { a=Math.max(a,8); if(b<=a) continue; }
         const c = C2(s.col[D[a].ci], s.shade), cs = U.rgb(a === 0 ? c.r : c.f), cf = U.rgb(c.f), ct = U.rgb(c.t);
         const hl = U.rgb(U.luma(c.f) > .62 ? U.mix(c.f, '#fffaf0', .55) : U.mix(c.f, '#fff4ea', .5));
         runPath(ctx, g, a, b);
@@ -365,18 +408,18 @@ const HAIR = (() => {
         // Rounded cross-section, matching the dimensional ImageGen hair reference.
         const mid = Math.round((a+b)/2), l = g.L[mid], r = g.R[mid];
         const cross = ctx.createLinearGradient(l[0],l[1],r[0]+.001,r[1]+.001);
-        cross.addColorStop(0,'rgba(35,12,15,.07)');
+        cross.addColorStop(0,'rgba(35,12,15,.025)');
         cross.addColorStop(.26,'rgba(255,246,218,.03)');
         cross.addColorStop(.42,'rgba(255,246,218,.13)');
         cross.addColorStop(.65,'rgba(255,246,218,.02)');
-        cross.addColorStop(1,'rgba(35,12,15,.08)');
+        cross.addColorStop(1,'rgba(35,12,15,.04)');
         ctx.fillStyle = cross; ctx.fill();
       }
       if (n > 3) {
         // rounded light streak along the lock (gives each lock volume)
         const c0 = C2(s.col[D[Math.floor(n / 2)].ci], s.shade); locks.push({ g, k: c0.f, c: c0 });
         ctx.strokeStyle = U.luma(c0.f) > .62 ? U.shade(c0.f, 10) : U.mix(c0.f, '#fff6ee', .22); ctx.globalAlpha = .34 - .12 * wet; ctx.lineWidth = Math.max(1.6, s.w * .3);
-        ctx.beginPath(); const st = s.cap ? 2 : 1;
+        ctx.beginPath(); const st = s.cap ? 8 : 2;
         for (let i = st; i < n - 1; i++) { const x = D[i].x + (g.L[i][0] - D[i].x) * .32, y = D[i].y + (g.L[i][1] - D[i].y) * .32; if (i === st) ctx.moveTo(x, y); else ctx.lineTo(x, y); }
         ctx.stroke(); ctx.globalAlpha = 1;
         // ringlets: a bright arc where each curl turn faces us, a dark one where it turns away
@@ -460,9 +503,17 @@ const HAIR = (() => {
       const {o:material, c:mc} = layerCanvas(key+'material',ctx);
       mc.drawImage(ART.atelierHairMaterial,627,0,627,627,65,65,270,555);
       mc.setTransform(1,0,0,1,0,0); mc.globalCompositeOperation='destination-in'; mc.drawImage(o,0,0);
-      c.save(); c.setTransform(1,0,0,1,0,0); c.globalCompositeOperation='multiply'; c.globalAlpha=.23;
+      c.save(); c.setTransform(1,0,0,1,0,0); c.globalCompositeOperation='soft-light'; c.globalAlpha=.42;
       c.drawImage(material,0,0); c.restore();
     }
+
+    // Broad soft light gives the simulated hair the volume of the painted reference.
+    const {o:light, c:lc}=layerCanvas(key+'light',ctx);
+    const shine=lc.createLinearGradient(80,0,320,0);
+    for(const [t,col] of [[0,'rgba(40,15,12,.17)'],[.1,'rgba(255,242,205,0)'],[.22,'rgba(255,240,195,.29)'],[.34,'rgba(255,242,205,0)'],[.5,'rgba(44,20,18,.04)'],[.66,'rgba(255,242,205,0)'],[.78,'rgba(255,240,195,.29)'],[.9,'rgba(255,242,205,0)'],[1,'rgba(40,15,12,.17)']])shine.addColorStop(t,col);
+    lc.fillStyle=shine;lc.fillRect(40,60,320,700);
+    lc.setTransform(1,0,0,1,0,0);lc.globalCompositeOperation='destination-in';lc.drawImage(o,0,0);
+    c.save();c.setTransform(1,0,0,1,0,0);c.drawImage(light,0,0);c.restore();
 
     ctx.save(); ctx.setTransform(1, 0, 0, 1, 0, 0);
     if (key === 'f') {

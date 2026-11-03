@@ -1,4 +1,4 @@
-# Style Studio — Atelier Edition
+# Style Studio — Atelier Edition V2
 
 Komplettes Browser-Spiel mit neu gestalteten Räumen, Werkzeugen und Figurenmaterialien.
 
@@ -25,13 +25,15 @@ Anschließend die lokale Seite auf Port 8000 im Browser öffnen. Es sind keine n
 - Drei mit ImageGen gestaltete Räume: Friseursalon, Make-up-Atelier und Ankleideboutique.
 - 25 mit ImageGen gestaltete Werkzeugmotive. Die Spielablagen nutzen die passenden Motive für alle bisherigen Werkzeuge.
 - Mit ImageGen gestaltete Oberflächen für Gesicht, Haare und Stoffe, eingebunden in die bearbeitbaren SVG-/Canvas-Ebenen.
-- Überarbeitete Hautbeleuchtung, feinere Haarschattierung, weichere Strähnen und anatomisch verfeinerte Arme und Hände.
+- Neues Gesicht aus separaten ImageGen-Komponenten: modellierte Nase und Haut, weichere Augenform, glänzende Lippen und fein gezeichnete Augenbrauen.
+- Neu gezeichneter Haaransatz, weichere Haarspitzen und breitere Schultern mit gemeinsam angepasster Kleidung.
+- Neue Grafiken im platzsparenden WebP-Format; Bildmaße und Transparenz bleiben erhalten.
 - Einheitliche Boutique-Oberfläche, neue Ablagen, Karten, Farbauswahl und Dialoge; Unterstützung für reduzierte Animationen.
 
 Die Figuren bleiben dynamisch: Haare werden weiterhin simuliert, Make-up frei gemalt und Kleidungsstücke einzeln ausgetauscht. Es wird kein unbewegliches Figurenbild über das Spiel gelegt.
 
 ## Für weitere Bearbeitung mit Claude
 
-`index.html` lädt die vorhandenen Spielmodule. `js/atelier.js` enthält die neue Grafik-Einbindung und legt die Bildausschnitte aus den Atlanten fest. `css/boutique.css` enthält die neue Oberfläche. `js/hair.js` zeichnet die weiterhin editierbaren Haare. Die Regeln und Kundenbewertung liegen in `js/game.js` und `js/client.js`.
+`index.html` lädt die vorhandenen Spielmodule. `js/figure.js` baut das neue Gesicht aus separaten Bildteilen auf. `js/atelier.js` enthält die neue Grafik-Einbindung und legt die Bildausschnitte aus den Atlanten fest. `css/boutique.css` enthält die neue Oberfläche. `js/hair.js` zeichnet die weiterhin editierbaren Haare. Die Regeln und Kundenbewertung liegen in `js/game.js` und `js/client.js`.
 
 Bildatlanten nicht beliebig zuschneiden: Die SVG-Ausschnitte und Materialkoordinaten beziehen sich auf die vollständigen Dateien.

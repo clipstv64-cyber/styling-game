@@ -82,7 +82,7 @@
   function hairSVG(c,len,curly,part) {
     const id = 'atPreviewHair'+(++hairPreviewId);
     let art = hairSVGBase(c,len,curly,part);
-    const defs = `<defs><linearGradient id="${id}" x1="90" y1="0" x2="310" y2="0" gradientUnits="userSpaceOnUse"><stop stop-color="${sh(c,-22)}"/><stop offset=".16" stop-color="${sh(c,14)}"/><stop offset=".3" stop-color="${c}"/><stop offset=".52" stop-color="${sh(c,10)}"/><stop offset=".7" stop-color="${c}"/><stop offset=".84" stop-color="${sh(c,20)}"/><stop offset="1" stop-color="${sh(c,-22)}"/></linearGradient><pattern id="${id}Tex" x="90" y="80" width="220" height="420" patternUnits="userSpaceOnUse"><svg width="220" height="420" viewBox="627 0 627 627" preserveAspectRatio="none"><image href="img/atelier-materials.png" width="1254" height="1254"/></svg></pattern></defs>`;
+    const defs = `<defs><linearGradient id="${id}" x1="90" y1="0" x2="310" y2="0" gradientUnits="userSpaceOnUse"><stop stop-color="${sh(c,-22)}"/><stop offset=".16" stop-color="${sh(c,14)}"/><stop offset=".3" stop-color="${c}"/><stop offset=".52" stop-color="${sh(c,10)}"/><stop offset=".7" stop-color="${c}"/><stop offset=".84" stop-color="${sh(c,20)}"/><stop offset="1" stop-color="${sh(c,-22)}"/></linearGradient><pattern id="${id}Tex" x="90" y="80" width="220" height="420" patternUnits="userSpaceOnUse"><svg width="220" height="420" viewBox="627 0 627 627" preserveAspectRatio="none"><image href="img/atelier-materials.webp" width="1254" height="1254"/></svg></pattern></defs>`;
     art = art.replace(/<path d="([^"]+)" fill="([^"]+)"\/>/g,(match,d,fill)=>fill===c ? `<path d="${d}" fill="url(#${id})"/><path d="${d}" fill="url(#${id}Tex)" opacity=".2" style="mix-blend-mode:multiply"/>` : match);
     return defs+art;
   }
@@ -98,9 +98,9 @@
     const feat = ART.headFeat({ ...L, happy: false }).replace(/ id="eyes(-shut)?"/g, '');
     const shoes = art(o.shoes).body, over = !o.dress && o.bottom && byId(o.bottom.id) && byId(o.bottom.id).overShoes;
     return `<svg class="${cls}" viewBox="${vb}" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">`
-      + hairSVG(hair.color, hair.len, hair.curly, 'back') + b.legs + art(o.legwear).body + (over ? shoes : '') + b.torso + bottom.body + (over ? '' : shoes) + dress.body + top.body + b.arms
+      + hairSVG(hair.color, hair.len, hair.curly, 'back') + '<g transform="translate(200 0) scale(1.16 1) translate(-200 0)">' + b.legs + art(o.legwear).body + (over ? shoes : '') + b.torso + bottom.body + (over ? '' : shoes) + dress.body + top.body + b.arms
       + (outer.sleeves ? '' : dress.sleeves + top.sleeves) + outer.body + outer.sleeves + art(o.bag).body + b.hands + art(o.necklace).body
-      + ART.headBase(L) + under + feat + lips + hairSVG(hair.color, hair.len, hair.curly, 'front') + art(o.ear).body + art(o.glasses).body + art(o.head).body + '</svg>';
+      + '</g>' + ART.headBase(L) + under + feat + lips + hairSVG(hair.color, hair.len, hair.curly, 'front') + art(o.ear).body + art(o.glasses).body + art(o.head).body + '</svg>';
   }
   function wishList(W) {
     const sw = c => `<i class="sw-dot" style="--c:${c}"></i>`, L = [];

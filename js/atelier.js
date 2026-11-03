@@ -9,8 +9,8 @@
     <radialGradient id="atGlow"><stop stop-color="#fff6db" stop-opacity=".42"/><stop offset="1" stop-color="#fff6db" stop-opacity="0"/></radialGradient>
     <linearGradient id="atArm" x1="0" x2="1"><stop stop-color="#31121d" stop-opacity=".23"/><stop offset=".25" stop-color="#fff0df" stop-opacity=".1"/><stop offset=".46" stop-color="#fff4e6" stop-opacity=".22"/><stop offset=".75" stop-color="#57202a" stop-opacity="0"/><stop offset="1" stop-color="#461720" stop-opacity=".24"/></linearGradient>
     <clipPath id="atFaceClip"><path d="${A.FACE}"/></clipPath>
-    <pattern id="atFaceMaterial" width="184" height="220" x="108" y="100" patternUnits="userSpaceOnUse"><svg width="184" height="220" viewBox="0 0 627 627" preserveAspectRatio="none"><image href="img/atelier-materials.png" width="1254" height="1254"/></svg></pattern>
-    <filter id="atTextile" x="0" y="0" width="1" height="1" primitiveUnits="objectBoundingBox" color-interpolation-filters="sRGB"><feImage href="img/atelier-materials.png" width="2" height="2" y="-1" preserveAspectRatio="none" result="material"/><feComponentTransfer in="material" result="softMaterial"><feFuncR type="linear" slope=".24" intercept=".81"/><feFuncG type="linear" slope=".24" intercept=".81"/><feFuncB type="linear" slope=".24" intercept=".81"/></feComponentTransfer><feBlend in="SourceGraphic" in2="softMaterial" mode="multiply" result="fabric"/><feComposite in="fabric" in2="SourceGraphic" operator="in"/></filter>
+    <pattern id="atFaceMaterial" width="184" height="220" x="108" y="100" patternUnits="userSpaceOnUse"><svg width="184" height="220" viewBox="0 0 627 627" preserveAspectRatio="none"><image href="img/atelier-materials.webp" width="1254" height="1254"/></svg></pattern>
+    <filter id="atTextile" x="0" y="0" width="1" height="1" primitiveUnits="objectBoundingBox" color-interpolation-filters="sRGB"><feImage href="img/atelier-materials.webp" width="2" height="2" y="-1" preserveAspectRatio="none" result="material"/><feComponentTransfer in="material" result="softMaterial"><feFuncR type="linear" slope=".24" intercept=".81"/><feFuncG type="linear" slope=".24" intercept=".81"/><feFuncB type="linear" slope=".24" intercept=".81"/></feComponentTransfer><feBlend in="SourceGraphic" in2="softMaterial" mode="multiply" result="fabric"/><feComposite in="fabric" in2="SourceGraphic" operator="in"/></filter>
   `);
 
   const baseHead = A.headBase;
@@ -39,11 +39,11 @@
   const oldIcon = A.icon;
   A.icon = key => {
     const n = icons.indexOf(key); if(n<0) return oldIcon(key);
-    return `<svg class="atelier-icon" viewBox="${n%5*100} ${Math.floor(n/5)*100} 100 100" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><image href="img/atelier-tools.png" width="500" height="500"/></svg>`;
+    return `<svg class="atelier-icon" viewBox="${n%5*100} ${Math.floor(n/5)*100} 100 100" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><image href="img/atelier-tools.webp" width="500" height="500"/></svg>`;
   };
-  A.showerHang = () => `<svg viewBox="0 0 84 168" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="atHose"><stop stop-color="#9d8395"/><stop offset=".5" stop-color="#fff4f7"/><stop offset="1" stop-color="#a78b9d"/></linearGradient></defs><path d="M62,-12 L62,52 Q62,65 52,72" stroke="url(#atHose)" stroke-width="9" fill="none"/><defs><clipPath id="atShowerCrop"><rect x="10" y="60" width="70" height="70"/></clipPath></defs><g clip-path="url(#atShowerCrop)"><image href="img/atelier-tools.png" x="-200" y="-220" width="350" height="350"/></g></svg>`;
+  A.showerHang = () => `<svg viewBox="0 0 84 168" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="atHose"><stop stop-color="#9d8395"/><stop offset=".5" stop-color="#fff4f7"/><stop offset="1" stop-color="#a78b9d"/></linearGradient></defs><path d="M62,-12 L62,52 Q62,65 52,72" stroke="url(#atHose)" stroke-width="9" fill="none"/><defs><clipPath id="atShowerCrop"><rect x="10" y="60" width="70" height="70"/></clipPath></defs><g clip-path="url(#atShowerCrop)"><image href="img/atelier-tools.webp" x="-200" y="-220" width="350" height="350"/></g></svg>`;
 
-  const room = n => `<svg class="atelier-room" viewBox="${n*512} 0 512 1024" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"><image href="img/atelier-rooms.png" width="1536" height="1024"/></svg>`;
+  const room = n => `<svg class="atelier-room" viewBox="${n*512} 0 512 1024" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"><image href="img/atelier-rooms.webp" width="1536" height="1024"/></svg>`;
   A.BG.salon = () => room(0); A.BG.makeup = () => room(1); A.BG.dress = () => room(2);
 
   // Add generated satin grain to existing vector garments, retaining every cut and colour.
@@ -59,5 +59,5 @@
   // Reusable generated hair material; the live strand renderer clips it to each lock.
   const hair = new Image();
   hair.onload = () => { A.atelierHairMaterial = hair; if (window.GAME) GAME.redraw(); };
-  hair.src = 'img/atelier-materials.png';
+  hair.src = 'img/atelier-materials.webp';
 })();

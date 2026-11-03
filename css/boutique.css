@@ -61,7 +61,7 @@ button:focus-visible{outline:3px solid #7955ab;outline-offset:3px}
 #wish-btn .wb-pic{background:linear-gradient(#fffaf7,#f1deed)}
 #submit-btn{border-radius:15px;background:linear-gradient(135deg,#84cdb3,#409f87);box-shadow:0 3px 0 #2d7f6b,0 7px 14px #287b5b25}
 #hud{border:1px solid #fff;background:#fffcf7ed}.hud-bar{background:#eedde8}.hud-bar i{background:linear-gradient(90deg,#dcb4da,#c771ab,#e3b461)}
-#start{background:linear-gradient(#fff4f0e8,#f4e0efed),url('../img/atelier-rooms.png') left center/300% 100%}
+#start{background:linear-gradient(#fff4f0e8,#f4e0efed),url('../img/atelier-rooms.webp') left center/300% 100%}
 .st-logo span{font-size:clamp(43px,7.7dvh,64px)}
 .st-pic{background:radial-gradient(ellipse at 50% 30%,#fffdf6,#f6e2ec);border-radius:120px 120px 80px 80px}
 #toast{max-width:82%;padding:10px 17px;font-size:13px;background:#624569ed;backdrop-filter:blur(8px);font-weight:500}
